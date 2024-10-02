@@ -28,6 +28,10 @@ use App\Http\Controllers\MoyenTransportController;
 
 // Route::resource("/itineraire", ItineraireController::class);
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 
 Route::group(['middleware' => 'auth'], function () {
 
