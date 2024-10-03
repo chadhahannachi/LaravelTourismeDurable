@@ -15,6 +15,10 @@ use App\Http\Controllers\EtapeController;
 use App\Http\Controllers\MoyenTransportController; 
 
 use App\Http\Controllers\HebergementController; 
+use App\Http\Controllers\ActiviteController; 
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +49,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
+	Route::resource("/activite", ActiviteController::class);
 
 
+	
 	Route::get('billing', function () {
 		return view('billing');
 	})->name('billing');

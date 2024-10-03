@@ -1,6 +1,7 @@
 @extends('layouts.user_type.auth')
 
 @section('content')
+
 <div>
     <div class="alert alert-secondary mx-4" role="alert">
         <span class="text-white">
@@ -17,9 +18,9 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">Liste des hébergements</h5>
+                            <h5 class="mb-0">Liste des Activités</h5>
                         </div>
-                        <a href="{{ url('/hebergement/create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nouvel Hébergement</a>
+                        <a href="{{ url('/activite/create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nouvelle Activité</a>
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -27,39 +28,52 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Label écologique</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Impact</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveau de durabilité</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prix</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($hebergements as $item)
+                                @foreach($activites as $item)
                                     <tr>
                                         <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->id }}</p>
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">{{ $item->nom }}</p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->label_ecologique }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->description }}</p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->impact }}</p>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->type }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->niveau_durabilite }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->prix }} €</p>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ url('/hebergement/' . $item->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Voir l'hébergement">
+                                            <!-- View button -->
+                                            <a href="{{ url('/activite/' . $item->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Voir l'activité">
                                                 <i class="fas fa-eye text-secondary"></i>
                                             </a>
-                                            <a href="{{ url('/hebergement/' . $item->id . '/edit') }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'hébergement">
+                                            
+                                            <!-- Edit button -->
+                                            <a href="{{ url('/activite/' . $item->id . '/edit') }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'activité">
                                                 <i class="fas fa-user-edit text-secondary"></i>
                                             </a>
-                                            <form method="POST" action="{{ url('/hebergement' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+
+                                            <!-- Delete form -->
+                                            <form method="POST" action="{{ url('/activite' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-link text-danger" title="Supprimer l'hébergement" onclick="return confirm('Confirmer la suppression ?')">
+                                                <button type="submit" class="btn btn-link text-danger" title="Supprimer l'activité" onclick="return confirm('Confirmer la suppression ?')">
                                                     <i class="fas fa-trash text-secondary"></i>
                                                 </button>
                                             </form>
@@ -74,4 +88,5 @@
         </div>
     </div>
 </div>
+
 @endsection
