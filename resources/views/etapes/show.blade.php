@@ -1,4 +1,3 @@
-//blog\resources\views\etapes\show.blade.php
 @extends('etapes.layout')
 @section('content')
   
