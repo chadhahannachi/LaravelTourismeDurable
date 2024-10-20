@@ -15,10 +15,8 @@ use App\Http\Controllers\EtapeController;
 use App\Http\Controllers\MoyenTransportController; 
 
 use App\Http\Controllers\HebergementController; 
-use App\Http\Controllers\ActiviteController; 
-
-
-
+use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\DestinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,11 +43,16 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
+	Route::get('home', function () {
+		return view('FrontOffice.home');
+	})->name('dashboard');
+
 	Route::resource("/itineraire", ItineraireController::class);
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
+	Route::resource("/destination", DestinationController::class);
 
 
 	
