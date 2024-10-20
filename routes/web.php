@@ -43,6 +43,10 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
+	Route::get('home', function () {
+		return view('FrontOffice.home');
+	})->name('dashboard');
+
 	Route::resource("/itineraire", ItineraireController::class);
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
