@@ -15,10 +15,8 @@ use App\Http\Controllers\EtapeController;
 use App\Http\Controllers\MoyenTransportController; 
 
 use App\Http\Controllers\HebergementController; 
-use App\Http\Controllers\ActiviteController; 
-
-
-
+use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\DestinationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
+	Route::resource("/destination", DestinationController::class);
 
 
 	
