@@ -2,7 +2,7 @@
 
 @section('auth')
 
-    @include('layouts.navbars.auth.nav') <!-- Inclut seulement le navbar -->
+    @include('layouts.FrontOffice.navbars.auth.nav') <!-- Inclut seulement le navbar -->
     
     <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
         <div class="container-fluid py-4">

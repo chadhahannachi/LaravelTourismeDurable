@@ -23,9 +23,9 @@ class SessionsController extends Controller
         if (Auth::attempt($attributes)) {
             session()->regenerate();
             if ($attributes['email'] === "admin@admin.com" && $attributes['password'] === "admin") {
-                return redirect('home')->with(['success' => 'You are logged in.']);
-            } else {
                 return redirect('dashboard')->with(['success' => 'You are logged in.']);
+            } else {
+                return redirect('home')->with(['success' => 'You are logged in.']);
             }
         } else {
 
