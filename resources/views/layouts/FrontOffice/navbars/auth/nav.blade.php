@@ -8,12 +8,12 @@
             </ol>
             <div class="flex-row d-flex align-items-center">
                 <li class="nav-item d-flex align-items-center">
-                    <a href="" class="font-weight-bolder mb-0 text-capitalize" style="margin-right  : 15px;">
+                    <a href="{{ url('/home')}}" class="font-weight-bolder mb-0 text-capitalize" style="margin-right  : 15px;">
                         <span class="d-sm-inline d-none">Home</span>
                     </a>
                 </li>
                 <li class="nav-item d-flex align-items-center">
-                    <a href="" class="font-weight-bolder mb-0 text-capitalize" style="margin-left: 15px;">
+                    <a href="{{ route('destination.display') }}" class="font-weight-bolder mb-0 text-capitalize" style="margin-left: 15px;">
                         <span class="d-sm-inline d-none">Destination</span>
                     </a>
                 </li>

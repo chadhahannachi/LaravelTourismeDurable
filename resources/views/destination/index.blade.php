@@ -31,6 +31,7 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Localisation</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Attraction</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveau de durabilité</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                                 </tr>
@@ -53,6 +54,17 @@
                                     </td>
                                     <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">{{ $item->description }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        @if($item->attractions->isNotEmpty())
+
+                                        @foreach($item->attractions as $attraction)
+                                        <p class="text-xs font-weight-bold mb-0">{{ $attraction->nomAttraction }} ({{ $attraction->typeAttraction }})</p>
+                                        @endforeach
+
+                                        @else
+                                        <p>Aucune attraction</p>
+                                        @endif
                                     </td>
                                     <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">{{ $item->niveauDurabilite }}</p>
