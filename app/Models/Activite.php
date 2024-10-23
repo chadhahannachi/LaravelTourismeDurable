@@ -17,6 +17,14 @@ class Activite extends Model
         'description',     // corresponds to the description of the step
         'type',            // corresponds to the type of step
         'niveau_durabilite', // corresponds to the durability level
-        'prix'             // corresponds to the price
+        'prix'   ,          // corresponds to the price
+        'disponibilite'
     ];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+ 
 }

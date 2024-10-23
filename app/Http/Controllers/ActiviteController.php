@@ -7,6 +7,7 @@ use App\Models\Activite; // Modèle Activite
 
 class ActiviteController extends Controller
 {
+    
     /**
      * Affiche une liste des activités.
      *
@@ -43,6 +44,8 @@ class ActiviteController extends Controller
             'type' => 'required|max:50',
             'niveau_durabilite' => 'required|integer|min:1|max:10', // Exemple: niveau de durabilité entre 1 et 10
             'prix' => 'required|numeric|min:0',
+            'disponibilite' => 'required|integer|min:1|max:10',
+            
         ]);
 
         // Création de l'activité

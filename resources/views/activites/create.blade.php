@@ -44,6 +44,11 @@
                         <input type="number" name="prix" id="prix" class="form-control" step="0.01" min="0" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="disponibilite">disponibilite</label>
+                        <input type="number" name="disponibilite" id="disponibilite" class="form-control" min="1" max="10" required>
+                    </div>
+
                     <div class="text-center">
                         <input type="submit" value="Enregistrer" class="btn bg-gradient-primary btn-lg">
                     </div>

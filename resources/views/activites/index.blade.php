@@ -28,13 +28,14 @@
                         <table class="table align-items-center mb-0">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveau de durabilité</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">ID</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">Nom</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">Description</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">Type</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">Niveau de durabilité</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">Prix</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">disponibilite</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-8">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,21 +44,25 @@
                                         <td class="ps-4">
                                             <p class="text-xs font-weight-bold mb-0">{{ $item->id }}</p>
                                         </td>
-                                        <td>
+                                        <td class="ps-4">
                                             <p class="text-xs font-weight-bold mb-0">{{ $item->nom }}</p>
                                         </td>
-                                        <td>
+                                        <td class="ps-4">
                                             <p class="text-xs font-weight-bold mb-0">{{ $item->description }}</p>
                                         </td>
-                                        <td>
+                                        <td class="ps-4">
                                             <p class="text-xs font-weight-bold mb-0">{{ $item->type }}</p>
                                         </td>
-                                        <td>
+                                        <td class="ps-4">
                                             <p class="text-xs font-weight-bold mb-0">{{ $item->niveau_durabilite }}</p>
                                         </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->prix }} €</p>
+                                        <td class="ps-4">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->prix }} dt</p>
                                         </td>
+                                        <td class="ps-4">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $item->disponibilite }} </p>
+                                        </td>
+
                                         <td class="text-center">
                                             <!-- View button -->
                                             <a href="{{ url('/activite/' . $item->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Voir l'activité">

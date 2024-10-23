@@ -18,6 +18,7 @@ return new class extends Migration
             $table->String("type");
             $table->String("niveau_durabilite");
             $table->float("prix");
+            $table->integer("disponibilite"); // Ajoutez cette ligne
             $table->timestamps();
         });
  }

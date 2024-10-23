@@ -30,6 +30,10 @@
         <label>Prix</label></br>
         <input type="number" name="prix" id="prix" value="{{ $activites->prix }}" class="form-control" step="0.01" min="0" required></br>
 
+
+        <label>disponibilite</label></br>
+        <input type="number" name="disponibilite" id="prix" value="{{ $activites->disponibilite }}" class="form-control" step="0.01" min="0" required></br>
+
         <!-- Bouton de mise à jour -->
         <input type="submit" value="Mettre à jour" class="btn btn-success"></br>
     </form>
