@@ -16,8 +16,8 @@
             </div>
             <div class="card-body">
 
-                <form action="{{ url('activite') }}" method="post">
-                    {!! csrf_field() !!}
+                <form action="{{ url('activite') }}" method="post" enctype="multipart/form-data">
+                   {!! csrf_field() !!}
 
                     <div class="form-group">
                         <label for="nom">Nom de l'activité</label>
@@ -49,6 +49,15 @@
                         <input type="number" name="disponibilite" id="disponibilite" class="form-control" min="1" max="10" required>
                     </div>
 
+                    <div class="form-group">
+                         <label for="image">Image de l'activité</label>
+                         <input type="file" name="image" id="image" class="form-control">
+                      
+ 
+                    </div>
+
+                   
+         
                     <div class="text-center">
                         <input type="submit" value="Enregistrer" class="btn bg-gradient-primary btn-lg">
                     </div>

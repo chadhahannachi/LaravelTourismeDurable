@@ -18,7 +18,9 @@ class Activite extends Model
         'type',            // corresponds to the type of step
         'niveau_durabilite', // corresponds to the durability level
         'prix'   ,          // corresponds to the price
-        'disponibilite'
+        'disponibilite',
+        'image',
+     
     ];
 
     public function reservations()

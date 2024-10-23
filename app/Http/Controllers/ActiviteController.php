@@ -45,14 +45,31 @@ class ActiviteController extends Controller
             'niveau_durabilite' => 'required|integer|min:1|max:10', // Exemple: niveau de durabilité entre 1 et 10
             'prix' => 'required|numeric|min:0',
             'disponibilite' => 'required|integer|min:1|max:10',
-            
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation pour l'image   
         ]);
+    
+        $imagePath = null; // Initialize image path
 
+        // Check if an image is uploaded
+        if ($request->hasFile('image')) {
+            // Create a unique filename for the image
+            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+            // Store the image in the 'images' directory in the public disk
+            $imagePath = $request->file('image')->storeAs('images', $fileName, 'public');
+        }
+    
+        // Set the image path correctly
+        if ($imagePath) {
+            // Remove the leading '/storage/' since $imagePath already contains it
+            $validatedData['image'] = $imagePath; // Just store the relative path
+        }
+    
         // Création de l'activité
         Activite::create($validatedData);
-
+    
         return redirect('activite')->with('flash_message', 'Activité ajoutée avec succès!');
     }
+    
 
     /**
      * Affiche les détails d'une activité spécifique.
