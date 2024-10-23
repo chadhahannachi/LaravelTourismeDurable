@@ -22,5 +22,9 @@ class Destination extends Model
     {
         return $this->hasMany(Attraction::class);
     }
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
 }
 
