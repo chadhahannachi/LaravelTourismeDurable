@@ -49,7 +49,7 @@ class DestinationController extends Controller
         $validatedData = $request->validate([
             'nom' => 'required|max:255',
             'localisation' => 'required',
-            'niveauDurabilite' => 'required|integer|min:1|max:10',
+            'niveauDurabilite' => 'required|integer|min:1|max:5',
             'description' => 'required|min:10',
             'nonAttraction' => 'array',
             'typeAttraction' => 'array',
@@ -91,14 +91,14 @@ class DestinationController extends Controller
      */
     public function show($id)
     {
-        $destination = Destination::with('attractions')->find($id);
+        $destination = Destination::find($id);
         return view('destination.show')->with('destination', $destination);
     }
 
     public function destinationDetails($id)
     {
-        $destination = Destination::find($id);
-        return view('destination.FrontOffice.destinationDetails')->with('destination', $destination);
+        $destination = Destination::with(['attractions', 'rates.user'])->find($id);
+        return view('destination.FrontOffice.destinationDetails', compact('destination'))->with('destination', $destination);
     }
     /**
      * Affiche le formulaire d'édition d'une activité spécifique.
@@ -126,7 +126,7 @@ class DestinationController extends Controller
         $validatedData = $request->validate([
             'nom' => 'required|max:255',
             'localisation' => 'required',
-            'niveauDurabilite' => 'required|integer|min:1|max:10',
+            'niveauDurabilite' => 'required|integer|min:1|max:5',
             'description' => 'required',
             'image' => 'nullable'
         ]);
