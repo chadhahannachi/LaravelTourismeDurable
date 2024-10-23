@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
 	Route::resource("/destination", DestinationController::class);
+	Route::get('/displaydestinations', [DestinationController::class, 'DisplayDestination'])->name('destination.display');
+	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');
 
 
 	

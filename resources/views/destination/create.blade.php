@@ -24,6 +24,9 @@
                             <div class="form-group">
                                 <label for="nom">Nom de la destination</label>
                                 <input type="text" name="nom" id="nom" class="form-control" required>
+                                @error('nom')
+                                <div style="color: red; font-size: small;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
@@ -31,6 +34,9 @@
                             <div class="form-group">
                                 <label for="localisation">Localisation</label>
                                 <input type="text" name="localisation" id="localisation" class="form-control" required>
+                                @error('localisation')
+                                <div style="color: red; font-size: small;">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -38,10 +44,16 @@
                     <div class="form-group">
                         <label for="niveauDurabilite">Niveau de durabilité</label>
                         <input type="number" name="niveauDurabilite" id="niveauDurabilite" class="form-control" min="1" max="10" required>
+                        @error('niveauDurabilite')
+                        <div style="color: red; font-size: small;">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea name="description" id="description" class="form-control" required></textarea>
+                        @error('description')
+                        <div style="color: red; font-size: small;">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Container for Attraction Blocks -->
@@ -50,14 +62,23 @@
                             <div class="col-md-2">
                                 <label for="nonAttraction-1">Nom Attraction</label>
                                 <input type="text" name="nonAttraction[]" id="nonAttraction-1" class="form-control" required>
+                                @error('nonAttraction')
+                                <div style="color: red; font-size: small;">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-2">
                                 <label for="typeAttraction-1">Type Attraction</label>
                                 <input type="text" name="typeAttraction[]" id="typeAttraction-1" class="form-control" required>
+                                @error('typeAttraction')
+                                <div style="color: red; font-size: small;">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label for="descriptionAttraction-1">Description</label>
                                 <input name="descriptionAttraction[]" id="descriptionAttraction-1" class="form-control" required>
+                                @error('descriptionAttraction')
+                                <div style="color: red; font-size: small;">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-1 text-center mt-5">
                                 <button class="btn btn-outline-secondary" type="button" id="add-attraction-1">+</button>
@@ -68,9 +89,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                                <label for="image">Destination Image</label>
-                                <input type="file" name="image" id="image" class="form-control" required>
-                            </div>
+                        <label for="image">Destination Image</label>
+                        <input type="file" name="image" id="image" class="form-control" required>
+                    </div>
                     <div class="text-center">
                         <input type="submit" value="Enregistrer" class="btn bg-gradient-primary btn-lg">
                     </div>
