@@ -16,8 +16,8 @@
             </div>
             <div class="card-body">
 
-                <form action="{{ url('activite') }}" method="post">
-                    {!! csrf_field() !!}
+                <form action="{{ url('activite') }}" method="post" enctype="multipart/form-data">
+                   {!! csrf_field() !!}
 
                     <div class="form-group">
                         <label for="nom">Nom de l'activité</label>
@@ -30,9 +30,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type</label>
-                        <input type="text" name="type" id="type" class="form-control" required>
-                    </div>
+                   <label for="type">Type</label>
+                   <select name="type" id="type" class="form-control" required>
+                     <option value="">Sélectionnez un type</option>
+                 @foreach($activityTypes as $activityType)
+                              <option value="{{ $activityType->value }}">{{ $activityType->name }}</option>
+                  @endforeach
+               </select>
+                </div>
+
 
                     <div class="form-group">
                         <label for="niveau_durabilite">Niveau de durabilité</label>
@@ -44,6 +50,20 @@
                         <input type="number" name="prix" id="prix" class="form-control" step="0.01" min="0" required>
                     </div>
 
+                    <div class="form-group">
+                        <label for="disponibilite">disponibilite</label>
+                        <input type="number" name="disponibilite" id="disponibilite" class="form-control" min="1" max="10" required>
+                    </div>
+
+                    <div class="form-group">
+                         <label for="image">Image de l'activité</label>
+                         <input type="file" name="image" id="image" class="form-control">
+                      
+ 
+                    </div>
+
+                   
+         
                     <div class="text-center">
                         <input type="submit" value="Enregistrer" class="btn bg-gradient-primary btn-lg">
                     </div>
@@ -53,5 +73,7 @@
         </div>
     </div>
 </div>
+<!-- Include the modal -->
+
 
 @endsection

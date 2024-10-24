@@ -1,5 +1,6 @@
-//blog\resources\views\etapes\create.blade.php
+
 @extends('etapes.layout')
+
 @section('content')
   
 <div class="card" style="margin:20px;">

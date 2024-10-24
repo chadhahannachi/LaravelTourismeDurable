@@ -15,9 +15,16 @@ return new class extends Migration
             $table->id();
             $table->String("nom");
             $table->String("description");
-            $table->String("type");
+            $table->enum("type", [
+                'Familiale', 
+                'Sportive', 
+                'Culturelle', 
+                'Aventure'
+            ]);
             $table->String("niveau_durabilite");
             $table->float("prix");
+            $table->integer("disponibilite"); // Ajoutez cette ligne
+            $table->string("image")->nullable(); // Ajoutez cette ligne pour l'image
             $table->timestamps();
         });
  }

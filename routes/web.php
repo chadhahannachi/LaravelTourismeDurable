@@ -15,7 +15,13 @@ use App\Http\Controllers\EtapeController;
 use App\Http\Controllers\MoyenTransportController; 
 
 use App\Http\Controllers\HebergementController; 
-use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\ActiviteController; 
+use App\Http\Controllers\ReservationController;
+
+
+
+
+//use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\RateController;
 
@@ -53,6 +59,22 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
+	Route::resource('/reservationss', ReservationController::class);
+	Route::get('/activite/{id}/reserver', [ReservationController::class, 'create'])->name('activite.reserver');
+	//Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
+
+	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+	Route::get('/reservations/create/{activite_id}', [ReservationController::class, 'create'])->name('reservations.create');
+	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+	Route::get('/reservations/{id}', [ReservationController::class, 'show'])->name('reservations.show'); // Cette ligne définit la route show
+	Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+
+
+
+	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
 	Route::resource("/destination", DestinationController::class);
 	Route::get('/displaydestinations', [DestinationController::class, 'DisplayDestination'])->name('destination.display');
 	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');
