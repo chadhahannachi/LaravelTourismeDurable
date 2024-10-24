@@ -36,11 +36,6 @@ use App\Http\Controllers\RateController;
 |
 */
 
-// Route::resource("/itineraire", ItineraireController::class);
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -54,14 +49,29 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('FrontOffice.home');
 	})->name('dashboard');
 
-	Route::resource("/itineraire", ItineraireController::class);
+	Route::get('stats', function () {
+		return view('stats');
+	})->name('stats');
+
+	Route::get('/itineraire', [ItineraireController::class, 'index']);
+	Route::get('/itineraire/create', [ItineraireController::class, 'create'])->name('itineraire.create');
+	Route::post('/itineraire/store', [ItineraireController::class, 'store'])->name('itineraire.store');
+
+	// Route pour afficher le formulaire d'édition
+	Route::get('itineraire/{id}/edit', [ItineraireController::class, 'edit'])->name('itineraire.edit');
+
+	// Route pour la mise à jour de l'itinéraire (requête PATCH)
+	Route::patch('itineraire/{id}', [ItineraireController::class, 'update'])->name('itineraire.update');
+
+	Route::delete('/itineraire/{id}', [ItineraireController::class, 'destroy']);
+
+
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
 	Route::resource('/reservationss', ReservationController::class);
 	Route::get('/activite/{id}/reserver', [ReservationController::class, 'create'])->name('activite.reserver');
-	//Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 
 
@@ -80,6 +90,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');
 	Route::post('/destinations/{destination}/rate', [RateController::class, 'store'])->name('rate.store');
 
+	Route::get('/itinerairelistfront', [ItineraireController::class, 'itinerairelistfront']);
+
+	Route::get('/etape/create/{itineraire}', [EtapeController::class, 'create'])->name('etape.create');
+	Route::post('/itineraire', [EtapeController::class, 'store'])->name('etape.store');
+
+	Route::get('/stats', [EtapeController::class, 'stats'])->name('stats');
 
 	
 	Route::get('billing', function () {

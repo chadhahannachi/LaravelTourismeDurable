@@ -1,32 +1,47 @@
-@extends('etapes.layout')
-@section('content')
-  
-<div class="card" style="margin:20px;">
-  <div class="card-header">Edit Etape</div>
-  <div class="card-body">
-       
-      <form action="{{ url('etape/' .$etapes->id) }}" method="post">
-        {!! csrf_field() !!}
-        @method("PATCH")
-        <input type="hidden" name="id" id="id" value="{{$etapes->id}}" id="id" />
+<!-- Modal -->
+<div class="modal fade" id="editEtapeModal" tabindex="-1" aria-labelledby="editEtapeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editEtapeModalLabel">Modifier l'Étape</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editEtapeForm" action="" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <input type="hidden" name="id" id="modalEtapeId" />
 
-        <label>nomEtape</label></br>
-        <input type="text" name="nomEtape" id="nomEtape" value="{{$etapes->nomEtape}}" class="form-control"></br>
+                    <!-- Nom de l'étape -->
+                    <div class="mb-3">
+                        <label for="modalNomEtape" class="form-label">Nom de l'Étape</label>
+                        <input type="text" name="nomEtape" id="modalNomEtape" class="form-control" required>
+                    </div>
 
-        <label>description</label></br>
-        <input type="text" name="description" id="description" value="{{$etapes->description}}" class="form-control"></br>
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="modalDescription" class="form-label">Description</label>
+                        <textarea name="description" id="modalDescription" class="form-control" required></textarea>
+                    </div>
 
-        <label>localisation</label></br>
-        <input type="text" name="localisation" id="localisation" value="{{$etapes->localisation}}" class="form-control"></br>
+                    <!-- Localisation -->
+                    <div class="mb-3">
+                        <label for="modalLocalisation" class="form-label">Localisation</label>
+                        <input type="text" name="localisation" id="modalLocalisation" class="form-control" required>
+                    </div>
 
-        <label>impact</label></br>
-        <input type="text" name="impact" id="impact" value="{{$etapes->impact}}" class="form-control"></br>
+                    <!-- Impact -->
+                    <div class="mb-3">
+                        <label for="modalImpact" class="form-label">Impact</label>
+                        <select name="impact" class="form-control" id="modalImpact" required>
+                            <option value="1">Oui</option>
+                            <option value="0">Non</option>
+                        </select>
+                    </div>
 
-        <input type="submit" value="Update" class="btn btn-success"></br>
-    </form>
-    
-  </div>
+                    <button type="submit" class="btn bg-gradient-primary btn-lg">Mettre à jour</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-  
-@stop
-

@@ -1,4 +1,4 @@
-@extends('layouts.FrontOffice.auth_no_sidebar')
+@extends('layouts.user_type.auth_no_sidebar')
 
 @section('content')
 <div>

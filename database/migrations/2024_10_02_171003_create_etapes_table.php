@@ -19,6 +19,8 @@ class CreateEtapesTable extends Migration
             $table->string('description');
             $table->string('localisation');
             $table->string('impact');
+            $table->foreignId('itineraire_id')->constrained('itineraires')->onDelete('cascade'); // Foreign key
+
             $table->timestamps();
         });
     }
