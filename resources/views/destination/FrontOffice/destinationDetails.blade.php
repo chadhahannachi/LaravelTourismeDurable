@@ -1,4 +1,4 @@
-@extends('layouts.user_type.auth_no_sidebar')
+@extends('layouts.FrontOffice.auth_no_sidebar')
 
 @section('content')
 <div class="d-flex flex-column align-items-center justify-content-start" style="padding-top: 10px;">
@@ -47,17 +47,13 @@
                             @endif
                         </div>
                     </div>
-                     <!-- Add the "Show Activities" button -->
-             <div style="margin-top: 20px;">
-                        <a href="{{ route('activite.index_front') }}" class="btn btn-primary" style="background-color: rgb(203, 12, 159); border-color: rgb(203, 12, 159);">
+                    <div>   <a href="{{ route('activite.index_front') }}" class="btn bg-gradient-primary btn-sm mb-0" style="background-color: rgb(203, 12, 159); border-color: rgb(203, 12, 159);">
                             Show Activities
                         </a>
-                    <div>    <a href="{{ url('/itinerairelistfront') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button"> les itineraires</a>
+                          <a href="{{ url('/itinerairelistfront') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button"> les itineraires</a>
                     </div>
                 </div>
             </div>
-           
-            
 
             <!-- Tabs for Reviews and Add Review -->
             <div class="mt-4">
