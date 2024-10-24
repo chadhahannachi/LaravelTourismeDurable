@@ -31,10 +31,7 @@
         <tbody>
             @foreach($reservations as $reservation)
                 <tr>
-                    <td>{{ $reservation->id }}</td>
-                    <td>{{ $reservation->nom_client }}</td>
-                    <td>{{ $reservation->email_client }}</td>
-                    <td>{{ $reservation->nombre_personnes }}</td>
+                   
                     <td>{{ $reservation->date_reservation }}</td>
                     <td>{{ $reservation->activite->nom }}</td>
                     <td>

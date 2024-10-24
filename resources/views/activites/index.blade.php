@@ -41,10 +41,11 @@
                                         <p class="card-text"><strong>Disponibilité:</strong> {{ $item->disponibilite }}</p>
 
                                         <div class="d-flex justify-content-between mt-3">
-                                            <!-- View button -->
-                                            <a href="{{ url('/activite/' . $item->id) }}" class="btn btn-outline-secondary btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Voir l'activité">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
+                                        <a href="{{ route('activite.show_back', $item->id) }}" class="btn btn-outline-secondary btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Voir l'activité">
+    Details
+    <i class="fas fa-eye"></i>
+</a>
+
                                             
                                             <!-- Edit button triggering modal -->
                                             <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editActivityModal{{ $item->id }}" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'activité">

@@ -7,18 +7,21 @@
                 <li class="breadcrumb-item text-sm text-dark active text-capitalize" aria-current="page">{{ str_replace('-', ' ', Request::path()) }}</li>
             </ol>
             <div class="flex-row d-flex align-items-center">
-                <li class="nav-item d-flex align-items-center">
-                    <a href="{{ url('/home')}}" class="font-weight-bolder mb-0 text-capitalize" style="margin-right  : 15px;">
-                        <span class="d-sm-inline d-none">Home</span>
-                    </a>
-                </li>
-                <li class="nav-item d-flex align-items-center">
-                    <a href="{{ route('destination.display') }}" class="font-weight-bolder mb-0 text-capitalize" style="margin-left: 15px;">
-                        <span class="d-sm-inline d-none">Destination</span>
-                    </a>
-                </li>
-            </div>
+    <li class="nav-item d-flex align-items-center">
+        <a href="{{ url('/home')}}" class="font-weight-bolder mb-0 text-capitalize" style="margin-right: 15px;">
+            <span class="d-sm-inline d-none">Home</span>
+        </a>
+    </li>
+    <li class="nav-item d-flex align-items-center">
+        <a href="{{ route('destination.display') }}" class="font-weight-bolder mb-0 text-capitalize" style="margin-left: 15px;">
+            <span class="d-sm-inline d-none">Destination</span>
+        </a>
+    </li>
 
+   
+</li>
+
+</div>
 
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">

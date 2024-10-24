@@ -21,6 +21,7 @@ use App\Http\Controllers\ReservationController;
 
 
 
+
 //use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\RateController;
@@ -73,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/reservationss', ReservationController::class);
 	Route::get('/activite/{id}/reserver', [ReservationController::class, 'create'])->name('activite.reserver');
 	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+	Route::get('/activites/front', [ActiviteController::class, 'index_front'])->name('activite.index_front');
 
 
 	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
@@ -97,6 +99,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/stats', [EtapeController::class, 'stats'])->name('stats');
 
+	Route::get('/activite/{id}/details', [ActiviteController::class, 'show_back'])->name('activite.show_back');
+	
 	
 	Route::get('billing', function () {
 		return view('billing');

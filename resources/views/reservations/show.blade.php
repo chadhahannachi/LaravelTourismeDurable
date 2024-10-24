@@ -1,4 +1,4 @@
-@extends('reservations.layout')
+@extends('layouts.user_type.auth')
 
 @section('content')
 <div class="container">
