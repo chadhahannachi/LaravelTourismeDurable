@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItinerairesTable extends Migration
+class UpdateImpactFieldInEtapesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateItinerairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('itineraires', function (Blueprint $table) {
-            $table->id();
-            $table->string('nomItineraire');
-            $table->string('distance');
-            $table->string('moyenTransport'); 
-            $table->timestamps();
+        Schema::table('etapes', function (Blueprint $table) {
+            $table->boolean('impact')->default(false)->change();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateItinerairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itineraires');
+        Schema::table('etapes', function (Blueprint $table) {
+            $table->string('impact')->change();
+        });
     }
 }
