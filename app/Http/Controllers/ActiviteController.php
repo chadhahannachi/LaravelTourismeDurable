@@ -9,6 +9,19 @@ use App\Enums\ActivityType;
 class ActiviteController extends Controller
 {
     
+     /**
+     * Affiche une liste des activités.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_front()
+    {
+        $activites = Activite::all();
+        return view('activites.frontOffice_activite.index_front')->with('activites', $activites);
+    }
+   
+
+
     /**
      * Affiche une liste des activités.
      *
@@ -61,12 +74,15 @@ class ActiviteController extends Controller
             // Store the image in the 'images' directory in the public disk
             $imagePath = $request->file('image')->storeAs('images', $fileName, 'public');
         }
+
     
         // Set the image path correctly
         if ($imagePath) {
             // Remove the leading '/storage/' since $imagePath already contains it
             $validatedData['image'] = $imagePath; // Just store the relative path
         }
+
+       
     
         // Création de l'activité
         Activite::create($validatedData);
@@ -85,6 +101,11 @@ class ActiviteController extends Controller
     {
         $activite = Activite::find($id);
         return view('activites.show')->with('activites', $activite);
+    }
+    public function show_back($id)
+    {
+        $activite = Activite::find($id);
+        return view('activites.show_back')->with('activites', $activite);
     }
 
     /**

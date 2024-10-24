@@ -21,6 +21,7 @@ use App\Http\Controllers\ReservationController;
 
 
 
+
 //use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\RateController;
@@ -63,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/activite/{id}/reserver', [ReservationController::class, 'create'])->name('activite.reserver');
 	//Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+	Route::get('/activites/front', [ActiviteController::class, 'index_front'])->name('activite.index_front');
 
 
 	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
@@ -80,7 +82,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');
 	Route::post('/destinations/{destination}/rate', [RateController::class, 'store'])->name('rate.store');
 
+	
 
+	Route::get('/activite/{id}/details', [ActiviteController::class, 'show_back'])->name('activite.show_back');
+	
 	
 	Route::get('billing', function () {
 		return view('billing');

@@ -16,6 +16,12 @@ class ReservationController extends Controller
          $reservations = Reservation::with('activite')->get();
          return view('reservations.index', compact('reservations'));
      }
+
+     public function index_front()
+     {
+         $reservations = Reservation::with('activite')->get();
+         return view('reservations.show_back', compact('reservations'));
+     }
  
      // Formulaire de création d'une nouvelle réservation
      public function create($activite_id)
@@ -58,7 +64,8 @@ public function store(Request $request)
      Mail::to($validatedData['email_client'])->send(new ReservationConfirmed($reservation));
 
 
-    return redirect()->route('reservations.index')->with('flash_message', 'Réservation effectuée avec succès!');
+    //return redirect()->route('reservations.index')->with('flash_message', 'Réservation effectuée avec succès!');
+    return redirect('activites/front')->with('flash_message', 'Réservation effectuée avec succès!');
 }
      // Détails d'une réservation
      public function show($id)

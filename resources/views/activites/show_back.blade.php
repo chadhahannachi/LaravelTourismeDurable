@@ -1,4 +1,5 @@
-@extends('layouts.FrontOffice.auth_no_sidebar')
+
+@extends('layouts.user_type.auth')
 
 @section('content')
 
@@ -30,10 +31,7 @@
 
                
 
-                <!-- Reserve Button -->
-                <div class="text-center" style="margin-top: 20px;">
-                    <a href="{{ route('activite.reserver', $activites->id) }}" class="btn btn-primary">Réserver cette activité</a>
-                </div>
+               
             </div>
         </div>
     </div>
