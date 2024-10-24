@@ -24,7 +24,10 @@
                     <!-- Nom de l'itinéraire -->
                     <div class="form-group">
                         <label for="nomItineraire">Nom de l'itinéraire</label>
-                        <input type="text" name="nomItineraire" id="nomItineraire" class="form-control" required>
+                        <input type="text" name="nomItineraire" id="nomItineraire" class="form-control" required value="{{ old('nomItineraire') }}">
+    @error('nomItineraire')
+        <small class="text-danger">{{ $message }}</small>
+    @enderror
                     </div>
 
                     <!-- Distance -->

@@ -53,7 +53,11 @@ class EtapeController extends Controller
         $request->validate([
             'itineraire_id' => 'required',
             'impact' => 'boolean', 
-            // autres validations
+            'nomEtape' => 'required|max:7', // Limite à 7 caractères
+            'description' => 'required|min:10', // Min 10 caractères
+        ], [
+            'nomEtape.max' => 'Le nom ne doit pas dépasser 7 caractères.', // Message personnalisé
+            'description.min' => 'La description doit contenir au moins 10 caractères.', // Message personnalisé
         ]);
     
         $etape = new Etape();
@@ -65,6 +69,8 @@ class EtapeController extends Controller
         $etape->impact = $request->input('impact') ? true : false;
         $etape->save();
         
+        return redirect('/itineraire')->with('flash_message', 'etape ajoutée!');  
+
     }
     
 
@@ -106,7 +112,7 @@ class EtapeController extends Controller
         $etape = Etape::find($id);
         $input = $request->all();
         $etape->update($input);
-        return redirect('etape')->with('flash_message', 'etape Updated!');  
+        return redirect('/itineraire')->with('flash_message', 'etape deleted!');  
     }
 
     /**
@@ -119,6 +125,8 @@ class EtapeController extends Controller
     {
         Etape::destroy($id);
         // return redirect('etape')->with('flash_message', 'Etape deleted!');
+        return redirect('/itineraire')->with('flash_message', 'etape deleted!');  
+
     }
 
 

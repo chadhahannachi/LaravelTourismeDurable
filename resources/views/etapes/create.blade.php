@@ -1,21 +1,5 @@
 <!-- Modal -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,12 +31,18 @@
                     <div class="form-group">
                         <label for="nomEtape">Nom de l'étape</label>
                         <input type="text" name="nomEtape" id="nomEtape" class="form-control" required>
+                        @if ($errors->has('nomEtape'))
+        <span class="text-danger">{{ $errors->first('nomEtape') }}</span>
+    @endif
                     </div>
 
                     <!-- Description -->
                     <div class="form-group">
                         <label for="description">Description</label>
                         <textarea name="description" id="description" class="form-control" required></textarea>
+    @if ($errors->has('description'))
+        <span class="text-danger">{{ $errors->first('description') }}</span>
+    @endif
                     </div>
 
                     <!-- Localisation -->

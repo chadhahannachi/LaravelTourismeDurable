@@ -9,22 +9,20 @@
             <h6 class="font-weight-bolder mb-0 text-capitalize">{{ str_replace('-', ' ', Request::path()) }}</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar"> 
-            <div class="nav-item d-flex align-self-end">
-                <a href="https://www.creative-tim.com/product/soft-ui-dashboard-laravel" target="_blank" class="btn btn-primary active mb-0 text-white" role="button" aria-pressed="true">
-                    Download
-                </a>
-            </div>
-            <div class="ms-md-3 pe-md-3 d-flex align-items-center">
-            <div class="input-group">
-                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" placeholder="Type here...">
-            </div>
-            </div>
+           
+        
+        <a class="nav-link {{ (Request::is('user-profile') ? 'active' : '') }} text-body font-weight-bold px-4" href="{{ url('user-profile') }}">
+        <i class="fa fa-user me-sm-1"></i>
+
+            <span class="d-sm-inline d-none">Profile</span>
+        </a>
+
+
             <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-                <a href="{{ url('/logout')}}" class="nav-link text-body font-weight-bold px-0">
-                    <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline d-none">Sign Out</span>
+                <a href="{{ url('/logout')}}" class="nav-link text-body font-weight-bold px-4">
+                <i class="fa fa-sign-out-alt me-sm-1"></i>
+                <span class="d-sm-inline d-none">Sign Out</span>
                 </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -50,7 +48,7 @@
                     <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                         <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                        <img src="{{ asset('assets/img/team-2.jpg') }}" class="avatar avatar-sm  me-3 ">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -68,7 +66,7 @@
                     <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                         <div class="my-auto">
-                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                        <img src="{{ asset('assets/img/small-logos/logo-spotify.svg') }}" class="avatar avatar-sm bg-gradient-dark  me-3 ">
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">

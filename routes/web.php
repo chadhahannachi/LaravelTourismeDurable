@@ -15,10 +15,9 @@ use App\Http\Controllers\EtapeController;
 use App\Http\Controllers\MoyenTransportController; 
 
 use App\Http\Controllers\HebergementController; 
-use App\Http\Controllers\ActiviteController; 
-
-
-
+use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\RateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +69,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
+	Route::resource("/destination", DestinationController::class);
+	Route::get('/displaydestinations', [DestinationController::class, 'DisplayDestination'])->name('destination.display');
+	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');
+	Route::post('/destinations/{destination}/rate', [RateController::class, 'store'])->name('rate.store');
 
 	Route::get('/itinerairelistfront', [ItineraireController::class, 'itinerairelistfront']);
 

@@ -3,6 +3,13 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
+    <div class="text-center wow fadeInUp w-full" style="max-width: 750px; margin-bottom: 50px;">
+        <h1 class="mb-4 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl md:text-[45px]">
+            Les itineraires 
+        </h1>
+        <p class="text-base leading-relaxed text-body-color md:text-lg">
+        Découvrez des itinéraires écologiques avec leurs arrêts et transports, pour un voyage respectueux de l'environnement        </p>
+    </div>
         <div class="col-lg-7 col-md-6">
             @foreach($itineraires as $itineraire)
             <div class="card mb-3">
@@ -25,9 +32,12 @@
                                     <i class="fa fa-map-marker text-success" aria-hidden="true"></i>
                                         {{ $etape->localisation }}
                                 </p>
+                                <p class="text-sm">
+                            <span class="font-weight-bold">Moyen de Transport : {{ $itineraire->moyenTransport }}</span> 
+                        </p>
                                 <p class="text-dark text-xs mt-1 mb-0">{{ $etape->description }}</p>
+                                
 
-                                <!-- Condition pour afficher l'impact écologique -->
                                 @if($etape->impact)
                                 <p class="text-success font-weight-bold text-xs mt-1 mb-0">
                                     <i class="fa fa-check text-success" aria-hidden="true"></i>

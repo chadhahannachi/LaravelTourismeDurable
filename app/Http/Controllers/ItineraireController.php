@@ -14,11 +14,20 @@ class ItineraireController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     $itineraires = Itineraire::all();
+    //     return view ('itineraires.index')->with('itineraires', $itineraires);
+    // }
+
     public function index()
-    {
-        $itineraires = Itineraire::all();
-        return view ('itineraires.index')->with('itineraires', $itineraires);
-    }
+{
+    $itineraires = Itineraire::all(); // Récupérer tous les itinéraires
+    $moyenTransports = MoyenTransport::all(); // Récupérer tous les moyens de transport
+
+    return view('itineraires.index', compact('itineraires', 'moyenTransports'));
+}
+
 
     public function itinerairelistfront()
     {
@@ -52,7 +61,7 @@ class ItineraireController extends Controller
      public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'nomItineraire' => 'required|string|max:255',
+        'nomItineraire' => 'required|string|max:10',
         'distance' => 'required|numeric|min:0',
         'moyenTransport' => 'required|string', // Validation du moyen de transport
 
@@ -65,7 +74,7 @@ class ItineraireController extends Controller
 
     $itineraire->save();
 
-    return redirect()->route('itineraire.create')->with('success', 'Itinéraire ajouté avec succès!');
+    return redirect('/itineraire')->with('success', 'Itinéraire ajouté avec succès!');
 }
 
 
@@ -115,7 +124,7 @@ class ItineraireController extends Controller
         {
             // Validation des données entrées par l'utilisateur
             $validatedData = $request->validate([
-                'nomItineraire' => 'required|string|max:255',
+                'nomItineraire' => 'required|string|max:10',
                 'distance' => 'required|numeric|min:0',
                 'moyenTransport' => 'required|string', // Validation du moyen de transport
 
@@ -150,4 +159,5 @@ class ItineraireController extends Controller
         Itineraire::destroy($id);
         return redirect('itineraire')->with('flash_message', 'Itineraire deleted!');
     }
+    
 }
