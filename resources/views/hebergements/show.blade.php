@@ -1,14 +1,25 @@
-@extends('hebergements.layout')
+{{-- resources/views/hebergement/show.blade.php --}}
+
+@extends('layouts.user_type.auth')
+
 @section('content')
-  
-<div class="card" style="margin:20px;">
-  <div class="card-header">Hebergement Page</div>
-  <div class="card-body">
+<div class="container">
+    <h1>Détails de l'Hébergement</h1>
+
+    <div class="card">
+        <div class="card-header">
+            <h4>{{ $hebergement->nom }}</h4>
+        </div>
         <div class="card-body">
-        <h5 class="card-title">Nom : {{ $hebergements->nom }}</h5>
-        <p class="card-text"> : Label Ecologique{{ $hebergements->label_ecologique }}</p>
-        <p class="card-text">Impact : {{ $hebergements->impact }}</p>
-  </div>
-    </hr>
-  </div>
+            <p><strong>ID:</strong> {{ $hebergement->id }}</p>
+            <p><strong>Nom:</strong> {{ $hebergement->nom }}</p>
+            <p><strong>Impact:</strong> {{ $hebergement->impact }}</p>
+            <p><strong>Label Écologique:</strong> {{ optional($hebergement->labelEcologique)->nom ?? 'N/A' }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{{ route('hebergement.index') }}" class="btn btn-secondary">Retour à la liste</a>
+            <a href="{{ route('hebergement.edit', $hebergement->id) }}" class="btn btn-warning">Modifier</a>
+        </div>
+    </div>
 </div>
+@endsection

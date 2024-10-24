@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hebergements', function (Blueprint $table) {
+        Schema::create('label_ecologiques', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('impact');
-            // Define foreign key to the label_ecologiques table
-            $table->foreignId('label_ecologique_id')->constrained('label_ecologiques')->onDelete('cascade');
+            $table->string('criteres');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hebergements');
+        Schema::dropIfExists('label_ecologiques');
     }
 };

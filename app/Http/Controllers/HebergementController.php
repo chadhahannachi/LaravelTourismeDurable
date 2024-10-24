@@ -1,10 +1,12 @@
 <?php
- 
+
 namespace App\Http\Controllers;
- 
+
 use Illuminate\Http\Request;
-use App\Models\Hebergement; //add Hebergement Model - Data is coming from the database via Model.
- 
+use App\Models\Hebergement; // The model for Hebergement
+use App\Models\LabelEcologique; // The model for LabelEcologique
+use Illuminate\Support\Facades\Validator;
+
 class HebergementController extends Controller
 {
     /**
@@ -14,10 +16,11 @@ class HebergementController extends Controller
      */
     public function index()
     {
-        $hebergements = Hebergement::all();
-        return view ('hebergements.index')->with('hebergements', $hebergements);
+        // Get all hebergements with their associated ecological labels
+        $hebergements = Hebergement::with('labelEcologique')->get();
+        return view('hebergements.index', compact('hebergements'));
     }
- 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,9 +28,11 @@ class HebergementController extends Controller
      */
     public function create()
     {
-        return view('hebergements.create');
+        // Get all ecological labels to populate the dropdown in the form
+        $labels = LabelEcologique::all();
+        return view('hebergements.create', compact('labels'));
     }
- 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,11 +41,20 @@ class HebergementController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Hebergement::create($input);
-        return redirect('hebergement')->with('flash_message', 'Hebergement Addedd!');  
+        // Validate incoming request data
+        $this->validate($request, [
+            'nom' => 'required|string|max:255',
+            'label_ecologique_id' => 'required|exists:label_ecologiques,id',
+            'impact' => 'required|string|max:1000',
+        ]);
+
+        // Store the new hebergement in the database
+        Hebergement::create($request->all());
+
+        // Redirect to index with a success message
+        return redirect('hebergement')->with('flash_message', 'Hebergement Added!');  
     }
- 
+
     /**
      * Display the specified resource.
      *
@@ -48,23 +62,22 @@ class HebergementController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $hebergement = Hebergement::find($id);
-        return view('hebergements.show')->with('hebergements', $hebergement);
+{
+    $hebergement = Hebergement::with('labelEcologique')->find($id); // Use with() to load the relationship
+
+    if (!$hebergement) {
+        return redirect()->route('hebergement.index')->with('error', 'Hébergement non trouvé.');
     }
- 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    return view('hebergements.show', compact('hebergement'));
+}
     public function edit($id)
     {
-        $hebergement = Hebergement::find($id);
-        return view('hebergements.edit')->with('hebergements', $hebergement);
+        $hebergement = Hebergement::findOrFail($id);
+        $labels = LabelEcologique::all(); // Get all labels for the dropdown
+        return view('hebergements.edit', compact('hebergement', 'labels'));
     }
- 
+
     /**
      * Update the specified resource in storage.
      *
@@ -74,12 +87,18 @@ class HebergementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $hebergement = Hebergement::find($id);
-        $input = $request->all();
-        $hebergement->update($input);
-        return redirect('hebergement')->with('flash_message', 'hebergement Updated!');  
+        // Validate incoming request data
+        $this->validate($request, [
+            'nom' => 'required|string|max:255',
+            'label_ecologique_id' => 'required|exists:label_ecologiques,id',
+            'impact' => 'required|string|max:1000',
+        ]);
+
+        $hebergement = Hebergement::findOrFail($id);
+        $hebergement->update($request->all());
+        return redirect('hebergement')->with('flash_message', 'Hebergement Updated!');  
     }
- 
+
     /**
      * Remove the specified resource from storage.
      *

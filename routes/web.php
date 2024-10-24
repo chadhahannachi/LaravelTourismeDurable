@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItineraireController; 
 use App\Http\Controllers\EtapeController; 
 use App\Http\Controllers\MoyenTransportController; 
+use App\Http\Controllers\LabelEcologiqueController; 
 
 use App\Http\Controllers\HebergementController; 
 use App\Http\Controllers\ActiviteController;
@@ -52,6 +53,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
+	Route::resource("/label_ecologique", LabelEcologiqueController::class);
+
+Route::get('/label-ecologique/create', [LabelEcologiqueController::class, 'create'])->name('label.create');
+Route::post('/label-ecologique', [LabelEcologiqueController::class, 'store'])->name('label.store');
+Route::get('/hebergementDetails/{id}', [HebergementController::class, 'hebergementDetails'])->name('hebergement.show');
+Route::get('/hebergementDetails/{id}/edit', [HebergementController::class, 'update'])->name('hebergement.edit');
+
+
 	Route::resource("/activite", ActiviteController::class);
 	Route::resource("/destination", DestinationController::class);
 	Route::get('/displaydestinations', [DestinationController::class, 'DisplayDestination'])->name('destination.display');

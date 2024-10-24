@@ -20,9 +20,7 @@
                             <h5 class="mb-0">Liste des hébergements</h5>
                         </div>
                         <div class="d-flex">
-                            <!-- New button for creating an ecological label -->
-                            <a href="{{ url('/label_ecologique/create') }}" class="btn bg-gradient-secondary btn-sm mb-0 me-2" type="button">+&nbsp; Nouveau Label Écologique</a>
-                            <!-- Existing button for creating a new accommodation -->
+                            <a href="{{ route('label.create') }}" class="btn bg-gradient-secondary btn-sm mb-0 me-2" type="button">+&nbsp; Nouveau Label Écologique</a> <!-- New button for label -->
                             <a href="{{ url('/hebergement/create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nouvel Hébergement</a>
                         </div>
                     </div>
