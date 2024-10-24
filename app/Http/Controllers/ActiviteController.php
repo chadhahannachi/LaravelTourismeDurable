@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activite; // Modèle Activite
+use App\Enums\ActivityType;
 
 class ActiviteController extends Controller
 {
@@ -26,7 +27,10 @@ class ActiviteController extends Controller
      */
     public function create()
     {
-        return view('activites.create'); // Vue pour créer une nouvelle activité
+        $activityTypes = ActivityType::cases();
+        return view('activites.create', compact('activityTypes')); // Pass enum values to the view
+    
+       // return view('activites.create'); // Vue pour créer une nouvelle activité
     }
 
     /**

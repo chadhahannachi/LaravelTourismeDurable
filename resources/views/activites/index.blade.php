@@ -46,10 +46,10 @@
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                             
-                                            <!-- Edit button -->
-                                            <a href="{{ url('/activite/' . $item->id . '/edit') }}" class="btn btn-outline-secondary btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'activité">
+                                            <!-- Edit button triggering modal -->
+                                            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editActivityModal{{ $item->id }}" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'activité">
                                                 <i class="fas fa-user-edit"></i>
-                                            </a>
+                                            </button>
 
                                             <!-- Delete form -->
                                             <form method="POST" action="{{ url('/activite' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
@@ -62,6 +62,9 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Include modal -->
+                                @include('activites.modal', ['item' => $item])
                             </div>
                         @endforeach
                     </div>

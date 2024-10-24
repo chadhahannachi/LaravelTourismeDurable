@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Activite;
+use App\Mail\ReservationConfirmed;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 
@@ -30,7 +32,7 @@ public function store(Request $request)
         'nom_client' => 'required|string|max:255',
         'email_client' => 'required|email',
         'nombre_personnes' => 'required|integer|min:1',
-        'date_reservation' => 'required|date',
+        'date_reservation' => 'required|date|after_or_equal:today',
     ]);
 
     // Trouver l'activité associée
@@ -41,12 +43,20 @@ public function store(Request $request)
         return redirect()->back()->with('error', 'Désolé, pas assez de places disponibles pour cette activité.');
     }
 
+     // Créer la réservation et stocker l'objet dans $reservation
+     $reservation = Reservation::create($validatedData);
+
+
     // Créer la réservation
-    Reservation::create($validatedData);
+    //Reservation::create($validatedData);
 
     // Mettre à jour la disponibilité de l'activité
     $activite->disponibilite -= $validatedData['nombre_personnes'];
     $activite->save();
+
+     // Envoyer l'email de confirmation de la réservation
+     Mail::to($validatedData['email_client'])->send(new ReservationConfirmed($reservation));
+
 
     return redirect()->route('reservations.index')->with('flash_message', 'Réservation effectuée avec succès!');
 }

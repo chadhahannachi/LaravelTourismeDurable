@@ -30,9 +30,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="type">Type</label>
-                        <input type="text" name="type" id="type" class="form-control" required>
-                    </div>
+                   <label for="type">Type</label>
+                   <select name="type" id="type" class="form-control" required>
+                     <option value="">Sélectionnez un type</option>
+                 @foreach($activityTypes as $activityType)
+                              <option value="{{ $activityType->value }}">{{ $activityType->name }}</option>
+                  @endforeach
+               </select>
+                </div>
+
 
                     <div class="form-group">
                         <label for="niveau_durabilite">Niveau de durabilité</label>
@@ -67,5 +73,7 @@
         </div>
     </div>
 </div>
+<!-- Include the modal -->
+
 
 @endsection

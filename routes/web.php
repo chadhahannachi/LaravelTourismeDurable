@@ -21,6 +21,9 @@ use App\Http\Controllers\ReservationController;
 
 
 
+//use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\RateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
+	Route::get('home', function () {
+		return view('FrontOffice.home');
+	})->name('dashboard');
+
 	Route::resource("/itineraire", ItineraireController::class);
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
@@ -68,6 +75,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 
+	Route::resource("/destination", DestinationController::class);
+	Route::get('/displaydestinations', [DestinationController::class, 'DisplayDestination'])->name('destination.display');
+	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');
+	Route::post('/destinations/{destination}/rate', [RateController::class, 'store'])->name('rate.store');
 
 
 	

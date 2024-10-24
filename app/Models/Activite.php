@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ActivityType;
 
 class Activite extends Model
 {
@@ -21,6 +22,10 @@ class Activite extends Model
         'disponibilite',
         'image',
      
+    ];
+
+    protected $casts = [
+        'type' => ActivityType::class, // Cast 'type' to the enum
     ];
 
     public function reservations()
