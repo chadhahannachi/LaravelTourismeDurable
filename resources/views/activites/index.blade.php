@@ -7,7 +7,7 @@
         <span class="text-white">
             <strong>Add, Edit, Delete features are not functional!</strong> This is a
             <strong>PRO</strong> feature! Click <strong>
-            <a href="https://www.creative-tim.com/live/soft-ui-dashboard-pro-laravel" target="_blank" class="text-white">here</a></strong>
+            <a href="https://www.creative-tim-dashboard.com/live/soft-ui-dashboard-pro-laravel" target="_blank" class="text-white">here</a></strong>
             to see the PRO product!
         </span>
     </div>
@@ -24,64 +24,50 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nom</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Niveau de durabilité</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Prix</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($activites as $item)
-                                    <tr>
-                                        <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->id }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->nom }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->description }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->type }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->niveau_durabilite }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $item->prix }} €</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <!-- View button -->
-                                            <a href="{{ url('/activite/' . $item->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Voir l'activité">
-                                                <i class="fas fa-eye text-secondary"></i>
-                                            </a>
+                    <div class="row">
+                        @foreach($activites as $item)
+                            <div class="col-md-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @if($item->image)
+                                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->nom }}" class="img-fluid" style="max-height: 200px; object-fit: cover;">
+                                        @else
+                                            <p>Pas d'image</p>
+                                        @endif
+                                        <h5 class="card-title">{{ $item->nom }}</h5>
+                                        <p class="card-text">
+                                            <strong>Description:</strong> {{ \Illuminate\Support\Str::limit($item->description, 35, '...') }}
+                                        </p>
+                                        <p class="card-text"><strong>Disponibilité:</strong> {{ $item->disponibilite }}</p>
+
+                                        <div class="d-flex justify-content-between mt-3">
+                                        <a href="{{ route('activite.show_back', $item->id) }}" class="btn btn-outline-secondary btn-sm" data-bs-toggle="tooltip" data-bs-original-title="Voir l'activité">
+    Details
+    <i class="fas fa-eye"></i>
+</a>
+
                                             
-                                            <!-- Edit button -->
-                                            <a href="{{ url('/activite/' . $item->id . '/edit') }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'activité">
-                                                <i class="fas fa-user-edit text-secondary"></i>
-                                            </a>
+                                            <!-- Edit button triggering modal -->
+                                            <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#editActivityModal{{ $item->id }}" data-bs-toggle="tooltip" data-bs-original-title="Modifier l'activité">
+                                                <i class="fas fa-user-edit"></i>
+                                            </button>
 
                                             <!-- Delete form -->
                                             <form method="POST" action="{{ url('/activite' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="btn btn-link text-danger" title="Supprimer l'activité" onclick="return confirm('Confirmer la suppression ?')">
-                                                    <i class="fas fa-trash text-secondary"></i>
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Include modal -->
+                                @include('activites.modal', ['item' => $item])
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

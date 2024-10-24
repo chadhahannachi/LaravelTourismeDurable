@@ -47,6 +47,11 @@
                             @endif
                         </div>
                     </div>
+                    <div>   <a href="{{ route('activite.index_front') }}" class="btn bg-gradient-primary btn-sm mb-0" style="background-color: rgb(203, 12, 159); border-color: rgb(203, 12, 159);">
+                            Show Activities
+                        </a>
+                          <a href="{{ url('/itinerairelistfront') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button"> les itineraires</a>
+                    </div>
                 </div>
             </div>
 

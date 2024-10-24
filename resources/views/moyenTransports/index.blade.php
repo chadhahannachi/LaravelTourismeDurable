@@ -1,58 +1,76 @@
-//blog\resources\views\moyenTransports\index.blade.php
-@extends('moyenTransports.layout')
+@extends('layouts.user_type.auth')
+
 @section('content')
-    <div class="container">
-        <div class="row" style="margin:20px;">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Liste des Moyens de Transport</h2>
-                    </div> 
-                    <div class="card-body">
-                        <a href="{{ url('/moyenTransport/create') }}" class="btn btn-success btn-sm" title="Add New MoyenTransport">
-                            Add New
-                        </a>
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>type</th>
-                                        
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+
+<div>
+    <div class="alert alert-secondary mx-4" role="alert">
+        <span class="text-white">
+            <strong>Add, Edit, Delete features are not functional!</strong> This is a
+            <strong>PRO</strong> feature! Click <strong>
+            <a href="https://www.creative-tim.com/live/soft-ui-dashboard-pro-laravel" target="_blank" class="text-white">here</a></strong>
+            to see the PRO product!
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 mx-4">
+                <div class="card-header pb-0">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div>
+                            <h5 class="mb-0">Liste des Moyens de Transport</h5>
+                        </div>
+                        <a href="{{ url('/moyenTransport/create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Nouveau Moyen de Transport</a>
+                    </div>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 @foreach($moyenTransports as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->type }}</td>
-                                        
-  
+                                        <td class="ps-4">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $loop->iteration }}</p>
+                                        </td>
                                         <td>
-                                            <a href="{{ url('/moyenTransport/' . $item->id) }}" title="View MoyenTransport"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/moyenTransport/' . $item->id . '/edit') }}" title="Edit MoyenTransport"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-  
+                                            <p class="text-xs font-weight-bold mb-0">{{ $item->type }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <!-- View button -->
+                                            <a href="{{ url('/moyenTransport/' . $item->id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Voir le moyen de transport">
+                                                <i class="fas fa-eye text-secondary"></i>
+                                            </a>
+                                            
+                                            <!-- Edit button -->
+                                            <a href="{{ url('/moyenTransport/' . $item->id . '/edit') }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Modifier le moyen de transport">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+
+                                            <!-- Delete form -->
                                             <form method="POST" action="{{ url('/moyenTransport' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete MoyenTransport" onclick="return confirm('Confirm delete?')"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                                
+                                                <button type="submit" class="btn btn-link text-danger" title="Supprimer le moyen de transport" onclick="return confirm('Confirmer la suppression ?')">
+                                                    <i class="fas fa-trash text-secondary"></i>
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-  
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 @endsection
-
-

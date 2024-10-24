@@ -1,4 +1,3 @@
-//blog\resources\views\etapes\layout.blade.php
 <!DOCTYPE html>
 <html>
 <head>

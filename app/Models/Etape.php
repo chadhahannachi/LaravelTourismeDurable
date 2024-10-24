@@ -10,5 +10,15 @@ class Etape extends Model
     use HasFactory;
     protected $table = 'etapes';
     protected $primaryKey = 'id';
-    protected $fillable = ['nomEtape', 'description', 'localisation', 'impact'];
+    protected $fillable = ['nomEtape', 'description', 'localisation', 'impact', 'itineraire_id'];
+
+    // public function itineraire()
+    // {
+    //     return $this->belongsTo(Itineraire::class);
+    // }
+
+    public function itineraires()
+    {
+        return $this->belongsTo(Itineraire::class);
+    }
 }

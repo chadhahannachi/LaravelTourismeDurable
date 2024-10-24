@@ -17,6 +17,7 @@ class CreateItinerairesTable extends Migration
             $table->id();
             $table->string('nomItineraire');
             $table->string('distance');
+            $table->string('moyenTransport'); 
             $table->timestamps();
         });
     }

@@ -10,5 +10,15 @@ class Itineraire extends Model
     use HasFactory;
     protected $table = 'itineraires';
     protected $primaryKey = 'id';
-    protected $fillable = ['nomItineraire', 'distance'];
+    protected $fillable = ['nomItineraire', 'distance', 'moyenTransport'];
+
+    // public function etapes()
+    // {
+    //     return $this->hasMany(Etape::class);
+    // }
+
+    public function etapes()
+    {
+        return $this->hasMany(Etape::class); // 'itineraire_id' est la clé étrangère dans la table 'etapes'
+    }
 }

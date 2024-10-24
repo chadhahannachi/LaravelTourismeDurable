@@ -8,6 +8,13 @@
         <div class="card-body">
         <h5 class="card-title">nomItineraire : {{ $itineraires->nomItineraire }}</h5>
         <p class="card-text">distance : {{ $itineraires->distance }}</p>
+
+        <h2>Étapes</h2>
+        <ul>
+          @foreach ($itineraires->etapes as $etape)
+            <li>{{ $etape->nomEtape }} - {{ $etape->description }}</li>
+          @endforeach
+        </ul>
         
   </div>
     </hr>

@@ -12,6 +12,8 @@
         <p class="card-text"><span style="font-weight: 600;">Sustainability Level</span> : {{ $destination->niveauDurabilite }}</p>
       </div>
     </div>
+    <a href="{{ url('/itineraire') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button"> les itineraires</a>
+
   </div>
 </div>
 @endsection

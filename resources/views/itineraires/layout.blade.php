@@ -1,4 +1,3 @@
-//blog\resources\views\itineraires\layout.blade.php
 <!DOCTYPE html>
 <html>
 <head>
