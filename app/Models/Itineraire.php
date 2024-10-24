@@ -19,6 +19,6 @@ class Itineraire extends Model
 
     public function etapes()
     {
-        return $this->hasMany(Etape::class, 'itineraire_id'); // 'itineraire_id' est la clé étrangère dans la table 'etapes'
+        return $this->hasMany(Etape::class); // 'itineraire_id' est la clé étrangère dans la table 'etapes'
     }
 }

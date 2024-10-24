@@ -15,7 +15,13 @@ use App\Http\Controllers\EtapeController;
 use App\Http\Controllers\MoyenTransportController; 
 
 use App\Http\Controllers\HebergementController; 
-use App\Http\Controllers\ActiviteController;
+use App\Http\Controllers\ActiviteController; 
+use App\Http\Controllers\ReservationController;
+
+
+
+
+//use App\Http\Controllers\ActiviteController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\RateController;
 
@@ -30,11 +36,6 @@ use App\Http\Controllers\RateController;
 |
 */
 
-// Route::resource("/itineraire", ItineraireController::class);
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -44,16 +45,17 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
+	Route::get('home', function () {
+		return view('FrontOffice.home');
+	})->name('dashboard');
+
 	Route::get('stats', function () {
 		return view('stats');
 	})->name('stats');
 
-	// Route::resource("/itineraire", ItineraireController::class);
 	Route::get('/itineraire', [ItineraireController::class, 'index']);
 	Route::get('/itineraire/create', [ItineraireController::class, 'create'])->name('itineraire.create');
-	// Route::post('/itineraire', [ItineraireController::class, 'store']);
 	Route::post('/itineraire/store', [ItineraireController::class, 'store'])->name('itineraire.store');
-	// Route::patch('/itineraire/{id}', [ItineraireController::class, 'update']);
 
 	// Route pour afficher le formulaire d'édition
 	Route::get('itineraire/{id}/edit', [ItineraireController::class, 'edit'])->name('itineraire.edit');
@@ -63,12 +65,26 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::delete('/itineraire/{id}', [ItineraireController::class, 'destroy']);
 
-	// Route::get('/itineraire/{id}/edit', [ItineraireController::class, 'edit'])->name('itineraire.edit');
 
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
+	Route::resource('/reservationss', ReservationController::class);
+	Route::get('/activite/{id}/reserver', [ReservationController::class, 'create'])->name('activite.reserver');
+	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+
+
+	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+	Route::get('/reservations/create/{activite_id}', [ReservationController::class, 'create'])->name('reservations.create');
+	Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+	Route::get('/reservations/{id}', [ReservationController::class, 'show'])->name('reservations.show'); // Cette ligne définit la route show
+	Route::delete('/reservations/{id}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+
+
+
+	Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
+
 	Route::resource("/destination", DestinationController::class);
 	Route::get('/displaydestinations', [DestinationController::class, 'DisplayDestination'])->name('destination.display');
 	Route::get('/destinationDetails/{id}', [DestinationController::class, 'destinationDetails'])->name('destination.details');

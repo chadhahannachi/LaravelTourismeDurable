@@ -17,7 +17,7 @@
             <div class="card-body">
 
                 <!-- <form action="{{ url('/itineraire') }}" method="post"> -->
-                <form action="{{ route('itineraire.store') }}" method="POST">
+                <form action="{{ route('itineraire.store') }}" method="POST" novalidate>
 
                 {!! csrf_field() !!}
 
