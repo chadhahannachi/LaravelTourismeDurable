@@ -11,4 +11,14 @@ class Etape extends Model
     protected $table = 'etapes';
     protected $primaryKey = 'id';
     protected $fillable = ['nomEtape', 'description', 'localisation', 'impact'];
+
+    // public function itineraire()
+    // {
+    //     return $this->belongsTo(Itineraire::class);
+    // }
+
+    public function itineraire()
+    {
+        return $this->belongsTo(Itineraire::class, 'itineraire_id');
+    }
 }

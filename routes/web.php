@@ -45,12 +45,38 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('dashboard');
 	})->name('dashboard');
 
-	Route::resource("/itineraire", ItineraireController::class);
+	Route::get('stats', function () {
+		return view('stats');
+	})->name('stats');
+
+	// Route::resource("/itineraire", ItineraireController::class);
+	Route::get('/itineraire', [ItineraireController::class, 'index']);
+	Route::get('/itineraire/create', [ItineraireController::class, 'create'])->name('itineraire.create');
+	// Route::post('/itineraire', [ItineraireController::class, 'store']);
+	Route::post('/itineraire/store', [ItineraireController::class, 'store'])->name('itineraire.store');
+	// Route::patch('/itineraire/{id}', [ItineraireController::class, 'update']);
+
+	// Route pour afficher le formulaire d'édition
+	Route::get('itineraire/{id}/edit', [ItineraireController::class, 'edit'])->name('itineraire.edit');
+
+	// Route pour la mise à jour de l'itinéraire (requête PATCH)
+	Route::patch('itineraire/{id}', [ItineraireController::class, 'update'])->name('itineraire.update');
+
+	Route::delete('/itineraire/{id}', [ItineraireController::class, 'destroy']);
+
+	// Route::get('/itineraire/{id}/edit', [ItineraireController::class, 'edit'])->name('itineraire.edit');
+
 	Route::resource("/etape", EtapeController::class);
 	Route::resource("/moyenTransport", MoyenTransportController::class);
 	Route::resource("/hebergement", HebergementController::class);
 	Route::resource("/activite", ActiviteController::class);
 
+	Route::get('/itinerairelistfront', [ItineraireController::class, 'itinerairelistfront']);
+
+	Route::get('/etape/create/{itineraire}', [EtapeController::class, 'create'])->name('etape.create');
+	Route::post('/itineraire', [EtapeController::class, 'store'])->name('etape.store');
+
+	Route::get('/stats', [EtapeController::class, 'stats'])->name('stats');
 
 	
 	Route::get('billing', function () {
